@@ -52,7 +52,7 @@ clean-all: OP = clean-all
 clean-all: folders $(FOLDERS_WITH_MAKEFILE) $(FOLDERS_WITHOUT_MAKEFILE)
 
 $(FOLDERS_WITH_MAKEFILE):
-	@$(MAKE) -C $@ $(OP)
+	@$(MAKE) -C -j1 $@ $(OP)
 ifeq ($(MAKECMDGOALS),all)
 	$(BUILD_BIN)/indigo_driver_metadata $(BUILD_DRIVERS)/indigo_$@  >>$(BUILD_SHARE)/indigo/$(GROUP)
 endif
@@ -61,7 +61,7 @@ ifeq ($(MAKECMDGOALS),install)
 endif
 
 $(FOLDERS_WITHOUT_MAKEFILE):
-	@$(MAKE) -C $@ -f ../../Makefile.drv $(OP)
+	@$(MAKE) -C -j1 $@ -f ../../Makefile.drv $(OP)
 ifeq ($(MAKECMDGOALS),all)
 	$(BUILD_BIN)/indigo_driver_metadata $(BUILD_DRIVERS)/indigo_$@ >>$(BUILD_SHARE)/indigo/$(GROUP)
 endif

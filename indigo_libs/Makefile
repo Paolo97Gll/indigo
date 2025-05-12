@@ -102,7 +102,8 @@ indigo/indigo_config.h:	../Makefile.inc
 #
 #---------------------------------------------------------------------
 
-libindigo: indigo_build_c indigo/indigo_config.h libusb libhidapi libjpeg libtiff libftd2xx libraw libindigocat $(BUILD_LIB)/libindigo.a $(BUILD_LIB)/libindigo.$(SOEXT)
+libindigo: libusb libhidapi libjpeg libtiff libftd2xx libraw libindigocat indigo_build_c indigo/indigo_config.h
+	@$(MAKE) $(BUILD_LIB)/libindigo.a $(BUILD_LIB)/libindigo.$(SOEXT)
 
 $(BUILD_LIB)/libindigo.a: $(LIBINDIGO_FILES)
 	$(AR) $(ARFLAGS) $@ $^

@@ -145,7 +145,10 @@ endif
 
 .PHONY: init all clean clean-all
 
-all:	init $(BUILD_LIB)/libindigo.$(SOEXT)
+.NOTPARALLEL: install uninstall package
+
+all: init
+	@$(MAKE)	$(BUILD_LIB)/libindigo.$(SOEXT)
 	@$(MAKE)	-C indigo_libs all
 	@$(MAKE)	-C indigo_tools all
 	@$(MAKE)	-C indigo_drivers -f ../Makefile.drvs all
